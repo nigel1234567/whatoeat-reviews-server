@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: darkorange;
+  margin: 0px;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px;
+}
+
+.is-grouped {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
