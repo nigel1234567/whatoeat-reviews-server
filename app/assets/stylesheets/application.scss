@@ -11,10 +11,27 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding: 8px;
+  .is-grouped {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
 }
 
-.is-grouped {
+.notification {
   display: flex;
-  flex-direction: row;
-  gap: 16px;
+  margin: 0px;
+  align-items: flex-start;
+}
+
+.is-danger {
+  color: darkred;
+  background-color: rgb(247, 173, 173);
+  font-weight: bold;
+}
+
+.is-primary {
+  color: darkgreen;
+  background-color: lightgreen;
+  font-weight: bold;
 }

@@ -13,7 +13,7 @@ class VisitsController < ApplicationController
 
   # GET /visits/new
   def new
-    @visit = Visit.new
+    @visit = current_user.visits.build
   end
 
   # GET /visits/1/edit
@@ -22,7 +22,7 @@ class VisitsController < ApplicationController
 
   # POST /visits or /visits.json
   def create
-    @visit = Visit.new(visit_params)
+    @visit = current_user.visits.build(visit_params)
 
     respond_to do |format|
       if @visit.save
@@ -66,6 +66,6 @@ class VisitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def visit_params
-      params.require(:visit).permit(:name, :description, :location, :date, :time)
+      params.require(:visit).permit(:name, :description, :location, :date, :time, :user_id)
     end
 end
