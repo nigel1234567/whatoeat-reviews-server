@@ -29,6 +29,10 @@ gem "jbuilder"
 
 # Devise for User Authentication
 gem 'devise'
+
+# Sass gem
+gem 'sass-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
