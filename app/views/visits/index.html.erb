@@ -1,23 +1,28 @@
-<% if flash[:notice] %>
-  <div class="notification is-primary global-notification">
-    <p class="notice"><%= notice %></p>
-  </div>
-<% end %>
-<% if flash[:alert] %>
-  <div class="notification is-danger global-notification">
-    <p class="alert"><%= alert %></p>
-  </div>
-<% end %>
-
-<h1>Visits</h1>
-
-<div id="visits">
-  <% @visits.each do |visit| %>
-    <%= render visit %>
-    <p>
-      <%= link_to "Show this visit", visit %>
-    </p>
+  <% if flash[:notice] %>
+    <div class="notification is-primary global-notification">
+      <p class="notice"><%= notice %></p>
+    </div>
   <% end %>
-</div>
+  <% if flash[:alert] %>
+    <div class="notification is-danger global-notification">
+      <p class="alert"><%= alert %></p>
+    </div>
+  <% end %>
 
-<%= link_to "New visit", new_visit_path %>
+<div class="main" >
+
+  <h1>Visits</h1>
+
+  <div id="visits">
+    <% @visits.each do |visit| %>
+      <% if current_user.id == visit.user_id %>
+        <%= render visit %>
+        <p>
+          <%= link_to "Show this visit", visit %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= link_to "New visit", new_visit_path %>
+</div>

@@ -2,6 +2,14 @@ body {
   margin: 0;
 }
 
+.main {
+  padding-left: 24px;
+}
+
+.notice, .alert {
+  padding-left: 24px;
+}
+
 .navbar {
   display: flex;
   flex-direction: row;
