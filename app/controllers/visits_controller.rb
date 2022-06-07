@@ -4,6 +4,7 @@ class VisitsController < ApplicationController
 
   # GET /visits or /visits.json
   def index
+    @place = Place.all
     @visits = Visit.all
   end
 
@@ -22,7 +23,22 @@ class VisitsController < ApplicationController
 
   # POST /visits or /visits.json
   def create
-    @visit = current_user.visits.build(visit_params)
+    def find_place(name)
+      Place.find_by(name)
+    end
+
+    if find_place(name: visit_params[:name]).nil?
+      puts "nil"
+      Place.create(name: visit_params[:name], description: visit_params[:description], location: visit_params[:location])
+      params[:place_id] = find_place(name: visit_params[:name]).id
+      @visit = current_user.visits.build(visit_params)
+    else
+      puts "present"
+      puts params
+      visit_params[:place_id] = find_place(name: visit_params[:name]).id
+      puts visit_params
+      @visit = current_user.visits.build(visit_params)
+    end
 
     respond_to do |format|
       if @visit.save
@@ -66,6 +82,6 @@ class VisitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def visit_params
-      params.require(:visit).permit(:name, :description, :location, :date, :time, :user_id)
+      params.require(:visit).permit(:name, :description, :location, :date, :time, :user_id, :place_id)
     end
 end
