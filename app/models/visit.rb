@@ -1,4 +1,9 @@
 class Visit < ApplicationRecord
   belongs_to :user
-  belongs_to :place, class_name: "Place", foreign_key: "place_id"
+  belongs_to :place
+
+  validates :name, presence: true
+  validates :location, presence: true
+  validates :date, presence: true
+  validates :time, presence: true
 end

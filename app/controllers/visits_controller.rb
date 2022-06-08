@@ -27,18 +27,15 @@ class VisitsController < ApplicationController
       Place.find_by(name)
     end
 
+    # If Place does not exist in database, create it
     if find_place(name: visit_params[:name]).nil?
-      puts "nil"
       Place.create(name: visit_params[:name], description: visit_params[:description], location: visit_params[:location])
-      params[:place_id] = find_place(name: visit_params[:name]).id
-      @visit = current_user.visits.build(visit_params)
-    else
-      puts "present"
-      puts params
-      visit_params[:place_id] = find_place(name: visit_params[:name]).id
-      puts visit_params
-      @visit = current_user.visits.build(visit_params)
     end
+
+    # Create Place Id
+    place_id = find_place(name: visit_params[:name]).id
+    
+    @visit = current_user.visits.build(place_id: place_id, name: visit_params[:name], description: visit_params[:description], location: visit_params[:location], date: visit_params[:date], time: visit_params[:time])
 
     respond_to do |format|
       if @visit.save
